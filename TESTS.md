@@ -61,7 +61,21 @@ scratch folder, `Get-Date`, an `echo` of text that merely looks dangerous).
 
 ### Install from the marketplace
 
-See "Install check" at the end of this file, filled in after the merge to `main`.
+After the merge, in a clean config folder (`CLAUDE_CONFIG_DIR` pointed at an empty
+directory, so no existing settings were involved):
+
+```
+claude plugin marketplace add kenhuangus/claude-code-security-mods
+claude plugin install <mod>@claude-code-security-mods     # for each of the 8
+claude plugin list
+```
+
+The marketplace was cloned from GitHub and validated, and all 8 mods installed at user
+scope. `claude plugin list` showed each at version 0.2.0 with status enabled.
+`eval-gate` and `nhi-scoper` also printed "1 userConfig option not yet set", which is the
+new `userConfig` declaration being read; the others installed with no notice.
+A session started from the installed copies was not run, because the clean config folder
+has no login.
 
 ## NOT run
 
