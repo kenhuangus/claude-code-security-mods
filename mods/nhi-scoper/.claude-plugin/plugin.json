@@ -1,1 +1,26 @@
-{"description":"Short-lived credential gate. Fetches a token from a configured broker only; it never invents a token and never falls back to a long-lived credential.","name":"nhi-scoper","version":"0.1.0"}
+{
+  "name": "nhi-scoper",
+  "version": "0.2.0",
+  "description": "Short-lived credential gate. Fetches a token from a configured broker only; it never invents a token and never falls back to a long-lived credential.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/nhi-scoper",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "security",
+    "credentials",
+    "short-lived",
+    "broker"
+  ],
+  "userConfig": {
+    "brokerUrl": {
+      "type": "string",
+      "title": "Token broker URL",
+      "description": "https URL (or localhost) that returns JSON like {\"token\":\"...\",\"expiresInMs\":900000} for /nhi-refresh. Leave empty until a broker is set up.",
+      "default": ""
+    }
+  }
+}

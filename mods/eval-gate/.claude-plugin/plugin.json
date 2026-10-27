@@ -1,1 +1,26 @@
-{"description":"Default-closed eval gate. External Promptfoo runs in CI are the real gate; this mod is defence in depth only.","name":"eval-gate","version":"0.1.0"}
+{
+  "name": "eval-gate",
+  "version": "0.2.0",
+  "description": "Default-closed eval gate. External Promptfoo runs in CI are the real gate; this mod is defence in depth only.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/eval-gate",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "security",
+    "evals",
+    "promptfoo",
+    "gate"
+  ],
+  "userConfig": {
+    "evalCommand": {
+      "type": "string",
+      "title": "Eval command",
+      "description": "Command line that runs your evals (for example \"promptfoo eval\"). The gate opens only when it exits 0.",
+      "default": "promptfoo eval"
+    }
+  }
+}

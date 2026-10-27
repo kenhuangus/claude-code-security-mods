@@ -1,8 +1,8 @@
-import { dangerousBashReason } from "./policy.js";
+import { dangerousCommandReason } from "./policy.js";
 
 export function register(on, options) {
-  on("tool.call", { tool: "Bash" }, async ($, e, next) => {
-    const reason = dangerousBashReason(e.command);
+  on("tool.call", { tool: ["Bash", "PowerShell"] }, async ($, e, next) => {
+    const reason = dangerousCommandReason(e.tool, e.command);
     if (reason) {
       return { deny: reason };
     }

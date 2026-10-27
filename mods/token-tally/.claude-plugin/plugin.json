@@ -1,1 +1,18 @@
-{"description":"Turn token tally. Records usage totals in store and shows the turn total; it is not a token stream or a server-side audit chain.","name":"token-tally","version":"0.1.0"}
+{
+  "name": "token-tally",
+  "version": "0.2.0",
+  "description": "Per-session token tally. Records usage totals in the store and prints the turn total; it is not a token stream or a server-side audit chain.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/token-tally",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "tokens",
+    "usage",
+    "cost",
+    "monitoring"
+  ]
+}

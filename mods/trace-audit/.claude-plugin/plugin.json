@@ -1,1 +1,18 @@
-{"description":"Observable audit trace only. Records tool calls and turn completions to a capped store log; it never blocks work.","name":"trace-audit","version":"0.1.0"}
+{
+  "name": "trace-audit",
+  "version": "0.2.0",
+  "description": "Observable audit trace only. Records tool calls and turn completions to a capped store log; it never blocks work.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/trace-audit",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "audit",
+    "trace",
+    "logging",
+    "monitoring"
+  ]
+}

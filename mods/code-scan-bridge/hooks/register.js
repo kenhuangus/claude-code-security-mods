@@ -1,7 +1,7 @@
 import { extractNewContent, findSecret } from "./policy.js";
 
 export function register(on, options) {
-  on("tool.call", { tool: ["Edit", "Write", "MultiEdit"] }, async ($, e, next) => {
+  on("tool.call", { tool: ["Edit", "Write", "MultiEdit", "NotebookEdit"] }, async ($, e, next) => {
     const reason = findSecret(extractNewContent(e));
     if (reason) {
       return { deny: "Code scan bridge blocked new content: " + reason + "." };
