@@ -1,0 +1,1 @@
+{"description":"Turn token tally. Records usage totals in store and shows the turn total; it is not a token stream or a server-side audit chain.","name":"token-tally","version":"0.1.0"}

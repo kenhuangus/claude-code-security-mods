@@ -1,0 +1,1 @@
+{"description":"Short-lived credential gate. Fetches a token from a configured broker only; it never invents a token and never falls back to a long-lived credential.","name":"nhi-scoper","version":"0.1.0"}

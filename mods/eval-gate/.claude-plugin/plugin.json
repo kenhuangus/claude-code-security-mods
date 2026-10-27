@@ -1,0 +1,1 @@
+{"description":"Default-closed eval gate. External Promptfoo runs in CI are the real gate; this mod is defence in depth only.","name":"eval-gate","version":"0.1.0"}

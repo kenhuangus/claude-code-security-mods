@@ -1,0 +1,1 @@
+{"description":"Appends architecture rules as Claude-only context on every prompt, and drops prompts that explicitly ask to ignore or bypass security rules.","name":"design-guard","version":"0.1.0"}

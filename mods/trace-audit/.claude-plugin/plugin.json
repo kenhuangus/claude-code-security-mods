@@ -1,0 +1,1 @@
+{"description":"Observable audit trace only. Records tool calls and turn completions to a capped store log; it never blocks work.","name":"trace-audit","version":"0.1.0"}

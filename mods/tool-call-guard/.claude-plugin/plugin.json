@@ -1,0 +1,1 @@
+{"description":"Local deterministic guard for dangerous Bash commands. A Rulebricks-style pattern, not the Rulebricks product or API.","name":"tool-call-guard","version":"0.1.0"}

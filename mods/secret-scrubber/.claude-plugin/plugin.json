@@ -1,0 +1,1 @@
+{"description":"Redacts secret patterns from prompts, tool arguments, and tool results, and denies @-mentions of secret files.","name":"secret-scrubber","version":"0.1.0"}
