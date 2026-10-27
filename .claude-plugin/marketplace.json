@@ -1,0 +1,74 @@
+{
+  "name": "claude-code-security-mods",
+  "owner": { "name": "Ken Huang", "url": "https://github.com/kenhuangus" },
+  "metadata": {
+    "description": "Eight small, local Claude Code security mods: deterministic guardrails inside the process loop. Each mod is one folder under mods/.",
+    "version": "0.2.0"
+  },
+  "plugins": [
+    {
+      "name": "code-scan-bridge",
+      "source": "./mods/code-scan-bridge",
+      "description": "Local deterministic pattern bridge for new file content. Not the official Claude Security plugin and not a data-flow scanner.",
+      "version": "0.2.0",
+      "category": "security",
+      "keywords": ["security", "secrets", "pre-commit", "guardrail"]
+    },
+    {
+      "name": "design-guard",
+      "source": "./mods/design-guard",
+      "description": "Appends architecture rules as Claude-only context on every prompt, and drops prompts that explicitly tell Claude to ignore or bypass security rules.",
+      "version": "0.2.0",
+      "category": "security",
+      "keywords": ["security", "architecture", "prompt", "guardrail"]
+    },
+    {
+      "name": "eval-gate",
+      "source": "./mods/eval-gate",
+      "description": "Default-closed eval gate. External Promptfoo runs in CI are the real gate; this mod is defence in depth only.",
+      "version": "0.2.0",
+      "category": "security",
+      "keywords": ["security", "evals", "promptfoo", "gate"]
+    },
+    {
+      "name": "nhi-scoper",
+      "source": "./mods/nhi-scoper",
+      "description": "Short-lived credential gate. Fetches a token from a configured broker only; it never invents a token and never falls back to a long-lived credential.",
+      "version": "0.2.0",
+      "category": "security",
+      "keywords": ["security", "credentials", "short-lived", "broker"]
+    },
+    {
+      "name": "secret-scrubber",
+      "source": "./mods/secret-scrubber",
+      "description": "Redacts secret patterns from prompts, shell commands and shell output, blocks writes that contain secrets, and denies reads and mentions of secret files.",
+      "version": "0.2.0",
+      "category": "security",
+      "keywords": ["security", "secrets", "redaction", "dlp"]
+    },
+    {
+      "name": "token-tally",
+      "source": "./mods/token-tally",
+      "description": "Per-session token tally. Records usage totals in the store and prints the turn total; it is not a token stream or a server-side audit chain.",
+      "version": "0.2.0",
+      "category": "monitoring",
+      "keywords": ["tokens", "usage", "cost", "monitoring"]
+    },
+    {
+      "name": "tool-call-guard",
+      "source": "./mods/tool-call-guard",
+      "description": "Local deterministic guard for dangerous Bash and PowerShell commands. Not the Rulebricks product; no network calls.",
+      "version": "0.2.0",
+      "category": "security",
+      "keywords": ["security", "bash", "powershell", "guardrail"]
+    },
+    {
+      "name": "trace-audit",
+      "source": "./mods/trace-audit",
+      "description": "Observable audit trace only. Records tool calls and turn completions to a capped store log; it never blocks work.",
+      "version": "0.2.0",
+      "category": "monitoring",
+      "keywords": ["audit", "trace", "logging", "monitoring"]
+    }
+  ]
+}

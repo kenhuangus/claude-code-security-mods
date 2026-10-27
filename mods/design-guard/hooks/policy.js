@@ -6,16 +6,29 @@ export const DESIGN_RULES_TEXT = [
   "- Prefer the smallest change that satisfies the request, and record what changed.",
 ].join("\n");
 
+const VERB = "(?:ignore|bypass|disregard|override|skip|circumvent|disable)";
+const FILLER = "(?:(?:all|any|every|the|your|these|those|my|our|this|that|of)\\s+)*";
+const TARGET = "(?:security|guardrail|design)\\s+rules?";
+
+// Only an instruction addressed to the assistant is dropped: the verb must start
+// a sentence or line, or follow "please", "now", "just" or "you must/should/can/will".
+// A question or an essay about how attackers bypass security rules is left alone.
+const INSTRUCTION = new RegExp(
+  "(?:^|[.!?;:]\\s+|\\b(?:please|now|just|you\\s+(?:must|should|can|will|may))\\s+)" + VERB + "\\s+" + FILLER + TARGET,
+  "im",
+);
+
 export function shouldDropPrompt(text) {
   if (typeof text !== "string") {
     return false;
   }
-  const forward = /\b(ignore|bypass|disregard|override|skip)\b[^.]{0,100}\b(security|guardrail|design)\s+rules?\b/i;
-  const reverse = /\b(security|guardrail|design)\s+rules?\b[^.]{0,100}\b(ignore|bypass|disregard|override|skip)\b/i;
-  return forward.test(text) || reverse.test(text);
+  return INSTRUCTION.test(text);
 }
 
 export function appendContext(context, rulesText) {
   const base = Array.isArray(context) ? context : [];
+  if (base.includes(rulesText)) {
+    return base;
+  }
   return [...base, rulesText];
 }

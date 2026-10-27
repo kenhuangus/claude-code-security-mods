@@ -1,11 +1,11 @@
-import { AUDIT_KEY, AUDIT_CAP, appendAudit, makeEntry } from "./policy.js";
+import { AUDIT_KEY, AUDIT_CAP, appendAudit, makeEntry, outcomeOf } from "./policy.js";
 
 export function register(on, options) {
   on("tool.call", async ($, e, next) => {
     try {
       const log = await $.store.get(AUDIT_KEY);
       const now = await $.clock.now();
-      await $.store.set(AUDIT_KEY, appendAudit(log, makeEntry("tool.call", e.tool, now, "pre"), AUDIT_CAP));
+      await $.store.set(AUDIT_KEY, appendAudit(log, makeEntry("tool.call", e.tool, now, "pre", { agentId: e.agentId }), AUDIT_CAP));
     } catch (error) {
       // Audit logging must never block the tool call.
     }
@@ -13,7 +13,7 @@ export function register(on, options) {
     try {
       const log = await $.store.get(AUDIT_KEY);
       const now = await $.clock.now();
-      await $.store.set(AUDIT_KEY, appendAudit(log, makeEntry("tool.call", e.tool, now, "post"), AUDIT_CAP));
+      await $.store.set(AUDIT_KEY, appendAudit(log, makeEntry("tool.call", e.tool, now, "post", { agentId: e.agentId, outcome: outcomeOf(result) }), AUDIT_CAP));
     } catch (error) {
       // Audit logging must never block the tool call.
     }
@@ -26,7 +26,7 @@ export function register(on, options) {
     try {
       const log = await $.store.get(AUDIT_KEY);
       const now = await $.clock.now();
-      await $.store.set(AUDIT_KEY, appendAudit(log, makeEntry("turn.complete", null, now, "complete"), AUDIT_CAP));
+      await $.store.set(AUDIT_KEY, appendAudit(log, makeEntry("turn.complete", null, now, "complete", { agentId: e.agentId }), AUDIT_CAP));
     } catch (error) {
       // Audit logging must never block the turn.
     }

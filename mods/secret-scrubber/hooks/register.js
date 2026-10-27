@@ -1,4 +1,4 @@
-import { redactText, redactResult, isSecretPath } from "./policy.js";
+import { redactText, redactToolResponse, isSecretPath, containsSecret, newContentOf } from "./policy.js";
 
 export function register(on, options) {
   on("prompt.submit", async ($, e, next) => {
@@ -14,11 +14,11 @@ export function register(on, options) {
     return next(e);
   });
 
-  on("tool.call", { tool: "Bash" }, async ($, e, next) => {
+  on("tool.call", { tool: ["Bash", "PowerShell"] }, async ($, e, next) => {
     const command = redactText(e.command);
     const event = command !== e.command ? { ...e, command: command } : e;
-    const result = await next(event);
-    return redactResult(result);
+    const response = await next(event);
+    return redactToolResponse(response);
   }).catch(async ($, e, next) => {
     if (!next.called) {
       return { deny: "Secret scrubber unavailable: refusing this call." };
@@ -26,19 +26,26 @@ export function register(on, options) {
     return next(e);
   });
 
-  on("tool.call", { tool: ["Edit", "Write", "MultiEdit"] }, async ($, e, next) => {
-    let event = e;
-    if (typeof e.new_string === "string" && redactText(e.new_string) !== e.new_string) {
-      event = { ...event, new_string: redactText(e.new_string) };
+  on("tool.call", { tool: ["Edit", "Write", "MultiEdit", "NotebookEdit"] }, async ($, e, next) => {
+    if (containsSecret(newContentOf(e))) {
+      return { deny: "Secret scrubber blocked a write that contains a secret. Read it from an environment variable or a secret manager instead of writing it into the file." };
     }
-    if (typeof e.content === "string" && redactText(e.content) !== e.content) {
-      event = { ...event, content: redactText(e.content) };
-    }
-    const result = await next(event);
-    return redactResult(result);
+    return next(e);
   }).catch(async ($, e, next) => {
     if (!next.called) {
       return { deny: "Secret scrubber unavailable: refusing this call." };
+    }
+    return next(e);
+  });
+
+  on("tool.call", { tool: "Read" }, async ($, e, next) => {
+    if (isSecretPath(e.file_path)) {
+      return { deny: "Secret scrubber blocked reading a secret file." };
+    }
+    return next(e);
+  }).catch(async ($, e, next) => {
+    if (!next.called) {
+      return { deny: "Secret scrubber unavailable: refusing this read." };
     }
     return next(e);
   });

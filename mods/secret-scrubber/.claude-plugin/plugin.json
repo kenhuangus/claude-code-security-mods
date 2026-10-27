@@ -1,1 +1,18 @@
-{"description":"Redacts secret patterns from prompts, tool arguments, and tool results, and denies @-mentions of secret files.","name":"secret-scrubber","version":"0.1.0"}
+{
+  "name": "secret-scrubber",
+  "version": "0.2.0",
+  "description": "Redacts secret patterns from prompts, shell commands and shell output, blocks writes that contain secrets, and denies reads and mentions of secret files.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/secret-scrubber",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "security",
+    "secrets",
+    "redaction",
+    "dlp"
+  ]
+}

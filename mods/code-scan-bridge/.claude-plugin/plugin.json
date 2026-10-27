@@ -1,1 +1,18 @@
-{"description":"Local deterministic pattern bridge for new file content. Not the official Claude Security plugin and not a data-flow scanner.","name":"code-scan-bridge","version":"0.1.0"}
+{
+  "name": "code-scan-bridge",
+  "version": "0.2.0",
+  "description": "Local deterministic pattern bridge for new file content. Not the official Claude Security plugin and not a data-flow scanner.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/code-scan-bridge",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "security",
+    "secrets",
+    "pre-commit",
+    "guardrail"
+  ]
+}

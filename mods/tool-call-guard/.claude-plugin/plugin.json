@@ -1,1 +1,18 @@
-{"description":"Local deterministic guard for dangerous Bash commands. A Rulebricks-style pattern, not the Rulebricks product or API.","name":"tool-call-guard","version":"0.1.0"}
+{
+  "name": "tool-call-guard",
+  "version": "0.2.0",
+  "description": "Local deterministic guard for dangerous Bash and PowerShell commands. Not the Rulebricks product; no network calls.",
+  "author": {
+    "name": "Ken Huang",
+    "url": "https://github.com/kenhuangus"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/kenhuangus/claude-code-security-mods/tree/main/mods/tool-call-guard",
+  "repository": "https://github.com/kenhuangus/claude-code-security-mods",
+  "keywords": [
+    "security",
+    "bash",
+    "powershell",
+    "guardrail"
+  ]
+}
